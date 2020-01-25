@@ -1,0 +1,109 @@
+/*******************************************************************************
+Theme Styles
+*******************************************************************************/
+
+
+body {
+	font-size: 16px;
+	font-family: 'Myriad Pro', Calibri, Helvetica, Arial, sans-serif;
+	line-height: 1.5;
+	text-align: center;
+	margin:0; 
+	padding-bottom:0 !important; 
+	height:100vh;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'Lucida Grande', 'Calibri', Helvetica, Arial, sans-serif;
+}
+
+h1 {
+
+	color: white;
+	pading: 0px;
+	margin: 0px;
+}
+
+h2 {
+	font-size: 20px;
+	color: white;
+	margin: 8px;
+}
+
+h3 {
+	color: black;
+	font-size: 30px;
+	text-align: left;
+	padding-left:0px;
+}
+
+h4 {
+	font-size: 18px;
+  	padding: 0px;
+	margin: 0px;
+	color: black;
+}
+
+h5 {
+	font-size: 18px;
+	color: white;
+	margin: 0px;
+	padding: 15px;
+}
+
+h6 {
+	font-size: 16px;
+}
+
+#box-container-clear {  /* clear container for body content  */
+	position: float;
+	width: 65%;
+	text-align: left;
+	padding: 20px;
+	margin-bottom: 40px;
+	display: inline-block;
+	margin: 0 auto;
+
+}
+
+#title-container{  /* standard container for title  */
+    display: inline-block;
+	width: 65%;
+	text-align: left;
+}
+
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding-right: 20px;
+	padding-left: 20px;
+    overflow: hidden;
+    background-color: #333333;
+}
+
+li {
+    float: right;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 15px 15px;
+    text-decoration: none;
+}
+
+head {
+	height: 60px;
+	width: 80%;
+	position: fixed;
+}
+
+li a:hover {
+    background-color: black;
+}
+
+
+
+  
