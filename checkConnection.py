@@ -1,4 +1,11 @@
+import getpass
 import pymongo
 
-client = pymongo.MongoClient("mongodb+srv://<username>:<password>@library-seat-tracker-fvhnk.azure.mongodb.net/test?retryWrites=true&w=majority")
-db = client.test
+un = input('Enter username: ')
+pw = getpass.getpass(prompt='Enter password: ') 
+
+client = pymongo.MongoClient("mongodb+srv://"+un+":"+pw+"@library-seat-tracker-fvhnk.azure.mongodb.net/gettingStarted?retryWrites=true&w=majority")
+db = client.gettingStarted
+
+# cursor = db.people.find({})[0]
+# print(cursor)
