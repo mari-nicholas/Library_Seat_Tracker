@@ -18,3 +18,5 @@ seatDocument = {
 	"date" : dt.strftime("%F"),
 	"time" : dt.strftime("%X")
 }
+
+seats.insert_one(seatDocument)
