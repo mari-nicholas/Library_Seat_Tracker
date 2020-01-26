@@ -1,6 +1,6 @@
 function readJson() {
 	(async () => {
-		var path = '../data/data.json'
+		var path = 'data.json'
 		var xhr = new XMLHttpRequest();
 	    xhr.open('GET', path, true);
 	    xhr.responseType = 'blob';
@@ -32,4 +32,4 @@ function readJson() {
 	})();
 }
 
-setInterval(readJson, 5000);
+setInterval(readJson, 15000);

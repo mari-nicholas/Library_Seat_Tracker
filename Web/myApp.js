@@ -19,10 +19,11 @@ app.get("/page2", function(req,res){
 app.get("/page3", function(req,res){
 	res.sendFile(__dirname+"/page3.html");
 })
+app.get('/data.json', function(req, res){
+	
+	//response.contentType('application/json');
 
-function queryData() {
-	//console.log("Test1");
-
+	console.log("HEYO")
 	const MongoClient = require('mongodb').MongoClient;
 	var url = "mongodb+srv://user:user@library-seat-tracker-fvhnk.azure.mongodb.net/test?retryWrites=true&w=majority";
 	const fs = require('fs');
@@ -42,13 +43,41 @@ function queryData() {
 				];
 	  mydb.collection("seats").aggregate(query).toArray(function(err, result) {
 	    if (err) throw err;
-	    //console.log(result);
-	    //console.log(JSON.stringify(result));
-	    fs.writeFileSync('./data/data.json', JSON.stringify(result));
-	    console.log("Loop");
+	    res.send(JSON.stringify(result))
 	    db.close();
 	  });
 	});
-}
+})
 
-setInterval(queryData, 55000);
+// function queryData() {
+// 	//console.log("Test1");
+
+// 	const MongoClient = require('mongodb').MongoClient;
+// 	var url = "mongodb+srv://user:user@library-seat-tracker-fvhnk.azure.mongodb.net/test?retryWrites=true&w=majority";
+// 	const fs = require('fs');
+
+
+// 	MongoClient.connect(url, function(err, db) {
+// 	  if (err) throw err;
+// 	  var mydb = db.db("seatsAvailable");
+// 	  var query = [{ 
+// 				  $group:
+// 					{
+// 						_id: "$seatNo",
+// 						lastState: { $last: "$available" }
+// 					}
+// 				},
+// 				{ $sort : { _id : 1} }
+// 				];
+// 	  mydb.collection("seats").aggregate(query).toArray(function(err, result) {
+// 	    if (err) throw err;
+// 	    //console.log(result);
+// 	    //console.log(JSON.stringify(result));
+// 	    fs.writeFileSync('./data/data.json', JSON.stringify(result));
+// 	    console.log("Loop");
+// 	    db.close();
+// 	  });
+// 	});
+// }
+
+//setInterval(queryData, 5000);
