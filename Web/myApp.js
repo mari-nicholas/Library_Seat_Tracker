@@ -1,6 +1,8 @@
 var express= require("express"), app = express(), http=require("http").Server(app).listen(3000);
 import {PythonShell} from 'python-shell';
 
+const { spawn } = require("child_process");
+
 app.use("/css", express.static("./css"))
 app.use("/img",express.static("./img"))
 app.use("/js", express.static("./js"))
@@ -56,8 +58,6 @@ function queryData() {
 	    db.close();
 	  });
 	});
-
-
 }
 
 setInterval(queryData, 15000);
