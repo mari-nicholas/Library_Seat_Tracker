@@ -1,13 +1,22 @@
 var express= require("express"), app = express(), http=require("http").Server(app).listen(3000);
+import {PythonShell} from 'python-shell';
 
 app.use("/css", express.static("./css"))
 app.use("/img",express.static("./img"))
 app.use("/js", express.static("./js"))
 app.use("/data", express.static("./data"))
 app.get("/", function(req,res){
+    PythonShell.run('../ML/simpleMachineLearning.py', null, function (err) {
+      if (err) throw err;
+      console.log('finished1');
+    });
 	res.sendFile(__dirname+"/home.html");
 })
 app.get("/home", function(req,res){
+    PythonShell.run('../ML/simpleMachineLearning.py', null, function (err) {
+      if (err) throw err;
+      console.log('finished2');
+    });
 	res.sendFile(__dirname+"/home.html");
 })
 app.get("/page1", function(req,res){
