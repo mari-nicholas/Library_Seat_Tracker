@@ -9,24 +9,24 @@ from random import randrange, randint
 
 data = []
 
-def makeSeat(i, a, j, d, t):
+def makeSeat(i, y, mo, j, d, h, m, a):
     seat = {
-        "seatNo" : i, # num
-        "available" : a,#bool
-        "date" : j, #str
-        "dayOfWeek" : d, #int
-        "time" : t, #str
+        "seatNo" : i,
+        "year" : y,
+        "month" : mo,
+        "day" : j,
+        "dayOfWeek" : d,
+        "hour" : h,
+        "min" : m,
+        "available" : a,
     }
 
     return seat
 
-def makeTime(st, s):
-    return str(st // 60).zfill(2) + ":" + str(st % 60).zfill(2) + ":" + str(s).zfill(2)
-
 #for i in seatNos:
 for i in range(100):
     dow = 3 #day of week
-    for j in ["2020-01-" + str(i).zfill(2) for i in list(range(1, 26))]:
+    for j in range(1, 26):
         if dow == 0:
             st = 12 * 60
             et = 22 * 60 + 45
@@ -40,13 +40,12 @@ for i in range(100):
             st = 8 * 60
             et = 22 * 60 + 45
         a = 1
-        data.append(makeSeat(i, a, j, dow, makeTime(st, 0)))
+        data.append(makeSeat(i, 2020, 1, j, dow, st // 60, st % 60, a))
         while True:
             st += randrange(20, 91)
             if st < et:
                 a += 1; a = a % 2
-                t = makeTime(st, randint(0, 59))
-                data.append(makeSeat(i, a, j, dow, t))
+                data.append(makeSeat(i, 2020, 1, j, dow, st // 60, st % 60, a))
             else:
                 break
         dow += 1
