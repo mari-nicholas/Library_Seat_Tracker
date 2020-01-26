@@ -8,5 +8,5 @@ client = pymongo.MongoClient("mongodb+srv://"+un+":"+pw+"@library-seat-tracker-f
 db = client.seatsAvailable
 seats = db.seats
 
-cursor = seats.find({})[0]
-print(cursor)
+# for i in cursor:
+#     print(i)

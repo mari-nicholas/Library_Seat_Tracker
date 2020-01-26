@@ -1,11 +1,14 @@
-# seatTemplate = {
-#     "seatNo" : 0 # num
-#     "available" : #bool
-#     "date" : #str
-#     "time" : #str
-# }
+import getpass
+import pymongo
 
 from random import randrange, randint
+
+un = input('Enter username: ')
+pw = getpass.getpass(prompt='Enter password: ') 
+
+client = pymongo.MongoClient("mongodb+srv://"+un+":"+pw+"@library-seat-tracker-fvhnk.azure.mongodb.net/seatsAvailable?retryWrites=true&w=majority")
+db = client.seatsAvailable
+seats = db.seats
 
 data = []
 
@@ -53,3 +56,7 @@ for i in range(100):
 
 for i in data:
     print(i)
+    # seats.insert_one(i)
+
+# cursor = seats.find({})[0]
+# print(cursor)
