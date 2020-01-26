@@ -7,42 +7,12 @@ app.use("/img",express.static("./img"))
 app.use("/js", express.static("./js"))
 app.use("/data", express.static("./data"))
 app.get("/", function(req,res){
+    runPy
 	res.sendFile(__dirname+"/home.html");
-
-    var pyProcess = spawn("python", ["../ML/simpleMachineLearning.py"]);
-
-    try { 
-        pyProcess.stdout.setEncoding("utf8");
-        pyProcess.stdout.on("data", data => {
-          console.log(data);
-          fs.writeFileSync('./data/hours.json', JSON.stringify(data));
-        });
-
-        pyProcess.stdout.on("end", data => {
-          console.log("Token " + token + ": closing connection.");
-        });
-    } catch (err) {
-
-    }
 })
 app.get("/home", function(req,res){
-	res.sendFile(__dirname+"/home.html");
-
-    var pyProcess = spawn("python", ["../ML/simpleMachineLearning.py"]);
-    try { 
-        pyProcess.stdout.setEncoding("utf8");
-        pyProcess.stdout.on("data", data => {
-          console.log(data);
-          fs.writeFileSync('./data/hours.json', JSON.stringify(data));
-        });
-
-        pyProcess.stdout.on("end", data => {
-          console.log("Token " + token + ": closing connection.");
-        });
-    } catch (err) {
-
-    }
-    
+    runPy
+	res.sendFile(__dirname+"/home.html");    
 })
 app.get("/page1", function(req,res){
 	res.sendFile(__dirname+"/page1.html");
@@ -83,4 +53,23 @@ function queryData() {
 	});
 }
 
+function runPy() {
+    var pyProcess = spawn("python", ["../ML/simpleMachineLearning.py"]);
+
+    try { 
+        pyProcess.stdout.setEncoding("utf8");
+        pyProcess.stdout.on("data", data => {
+          console.log(data);
+          fs.writeFileSync('./data/hours.json', JSON.stringify(data));
+        });
+
+        pyProcess.stdout.on("end", data => {
+          console.log("Token " + token + ": closing connection.");
+        });
+    } catch (err) {
+
+    }
+}
+
+queryData
 setInterval(queryData, 15000);
