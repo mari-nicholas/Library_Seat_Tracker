@@ -7,10 +7,10 @@ from pandas import DataFrame
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 
-# un = input('Enter username: ')
-# pw = getpass.getpass(prompt='Enter password: ') 
+un = input('Enter username: ')
+pw = getpass.getpass(prompt='Enter password: ') 
 
-client = pymongo.MongoClient("mongodb+srv://ADMIN:admin@library-seat-tracker-fvhnk.azure.mongodb.net/seatsAvailable?retryWrites=true&w=majority")
+client = pymongo.MongoClient("mongodb+srv://"+un+":"+pw+"@library-seat-tracker-fvhnk.azure.mongodb.net/seatsAvailable?retryWrites=true&w=majority")
 db = client.seatsAvailable
 seats = db.seats
 
