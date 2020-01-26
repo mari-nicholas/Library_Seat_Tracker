@@ -11,12 +11,18 @@ function readJson() {
 	          fileReader.addEventListener('load', function(){
 	          	//console.log(fileReader.result);
 				var obj = JSON.parse(fileReader.result);
-				if(obj[0]["lastState"] === 1){
-					document.getElementsByClassName("occupied")[0].style.fill="green";	
-					console.log("green");
-				} else {
-					document.getElementsByClassName("occupied")[0].style.fill="red";
-					console.log("red");
+				var temp = document.getElementsByClassName("occupied");
+				for (var i = 0; i < temp.length; i++) {
+					if(obj[i]["lastState"] === 1){
+						temp[i].style.fill="green";	
+						console.log(i, "green");
+					} else if(obj[i]["lastState"] === 0) {
+						temp[i].style.fill="red";
+						console.log(i, "red");
+					}
+					else{
+
+					}
 				}	
 		        });
 	          fileReader.readAsText(file);
