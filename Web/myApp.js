@@ -81,3 +81,19 @@ app.get('/data.json', function(req, res){
 // }
 
 //setInterval(queryData, 5000);
+
+function getApiData(){
+    var http = new XMLHttpRequest();
+    var url="";
+    http.open('GET', url);
+    http.onreadystatechange - function(){
+        if (http.readyState==4 && http.status == 200){
+            data=http.responseText;
+            console.log(data);
+        }
+    }
+    http.send();
+}
+
+
+getApiData();
