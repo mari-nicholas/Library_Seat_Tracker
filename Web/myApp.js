@@ -44,7 +44,7 @@ function queryData() {
 	    if (err) throw err;
 	    //console.log(result);
 	    //console.log(JSON.stringify(result));
-	    fs.writeFileSync('isthodeopen.tech/data/data.json', JSON.stringify(result));
+	    fs.writeFileSync('./data/data.json', JSON.stringify(result));
 	    console.log("Loop");
 	    db.close();
 	  });
