@@ -47,8 +47,6 @@ function queryData() {
 	    db.close();
 	  });
 	});
-
-
 }
 
 setInterval(queryData, 15000);
