@@ -32,4 +32,4 @@ function readJson() {
 	})();
 }
 
-setInterval(readJson, 15000);
+setInterval(readJson, 5000);

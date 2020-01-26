@@ -51,4 +51,4 @@ function queryData() {
 	});
 }
 
-setInterval(queryData, 15000);
+setInterval(queryData, 55000);
