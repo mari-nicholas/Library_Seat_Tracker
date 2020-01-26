@@ -3,19 +3,9 @@ import pymongo
 import datetime
 import pickle
 
-from random import randrange, randint
-from pandas import read_csv, DataFrame
-from matplotlib import pyplot
+from pandas import DataFrame
 from sklearn.model_selection import train_test_split
-from sklearn.model_selection import cross_val_score
-from sklearn.model_selection import StratifiedKFold
-from sklearn.linear_model import LogisticRegression
 from sklearn.linear_model import LinearRegression
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
-from sklearn.naive_bayes import GaussianNB
-from sklearn.svm import SVC
 
 # un = input('Enter username: ')
 # pw = getpass.getpass(prompt='Enter password: ') 
@@ -25,13 +15,6 @@ db = client.seatsAvailable
 seats = db.seats
 
 selection = list(seats.find( {} ))
-# for i in selection:
-#     print(i)
-
-# dt = datetime.datetime.today()
-# dow = int(dt.strftime("%w")) 
-
-limit = len(selection)
 
 data = []
 
@@ -65,7 +48,7 @@ for day in range(1, 26): # doesn't do today
                 data[day-1].append([])
                 ind += 1
         seat, count = 0, 0
-        for i in range(limit - 1):
+        for i in range(len(selection) - 1):
             begin = selection[i]
             end = selection[i + 1]
             if begin["day"] == day and end["day"] == day:
@@ -129,27 +112,3 @@ predictor.fit(X=X, y=y)
 
 filename = 'finalized_model.sav'
 pickle.dump(predictor, open(filename, 'wb'))
-
-inputDate = 31
-inputTime = 14
-
-dow = (inputDate + 3) % 7
-
-if dow == 0:
-    assert(12 <= inputTime <= 22)
-elif dow == 5:
-    assert(8 <= inputTime <= 17)
-elif dow == 6:
-    assert(10 <= inputTime <= 17)
-else:
-    assert(8 <= inputTime <= 22)
-
-X_TEST = [[inputDate, dow, inputTime]]
-
-for i in dataset:
-    if i["dayOfWeek"] == dow and abs(i["hour"] - inputTime) < 2:
-        print(i)
-
-outcome = predictor.predict(X=X_TEST)
-
-print('\nOutcome: {0:5.2f}'.format(float(outcome[0])))
