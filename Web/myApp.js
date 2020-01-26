@@ -5,11 +5,9 @@ app.use("/img",express.static("./img"))
 app.use("/js", express.static("./js"))
 app.use("/data", express.static("./data"))
 app.get("/", function(req,res){
-    let r =  await runPy()
 	res.sendFile(__dirname+"/home.html");
 })
 app.get("/home", function(req,res){
-    let r =  await runPy()
 	res.sendFile(__dirname+"/home.html");
 })
 app.get("/page1", function(req,res){
@@ -51,21 +49,5 @@ function queryData() {
 	});
 }
 
-function runPy() {
-    const spawn = require('child_process').spawn;
-    const ls = spawn('python', ['../ML/simpleMachineLearning.py']);
-
-    ls.stdout.on('data', (data) => {
-      console.log(`stdout: ${data}`);
-    });
-
-    ls.stderr.on('data', (data) => {
-      console.log(`stderr: ${data}`);
-    });
-
-    ls.on('close', (code) => {
-      console.log(`child process exited with code ${code}`);
-    });
-}
 
 setInterval(queryData, 30000);
