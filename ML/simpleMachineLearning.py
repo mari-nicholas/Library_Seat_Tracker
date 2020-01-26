@@ -40,12 +40,13 @@ def getOpenTime(dow):
         return "8:00"
 
 if not thodeOpen(dow, inputTime):
-    print("Thode is currently closed; it opens today at {}.".format(getOpenTime(dow)))
+    return "Thode is currently closed; it opens today at {}.".format(getOpenTime(dow))
 else:
     predictor = joblib.load('finalized_model.sav')
-    print("This hour, Thode is expected to be {0:5.2f} available.".format(float(predictor.predict(X=[[inputDate, dow, inputTime]])[0])))
+    s = "This hour, Thode is expected to be {0:5.2f} available.".format(float(predictor.predict(X=[[inputDate, dow, inputTime]])[0]))
     if thodeOpen(dow, inputTime + 1):
-        print("Next hour, Thode is expected to be {0:5.2f} available.".format(float(predictor.predict(X=[[inputDate, dow, inputTime + 1]])[0])))
+        s += "Next hour, Thode is expected to be {0:5.2f} available.".format(float(predictor.predict(X=[[inputDate, dow, inputTime + 1]])[0]))
+    return s
 
 # for i in dataset:
 #     if i["dayOfWeek"] == dow and abs(i["hour"] - inputTime) < 2:
