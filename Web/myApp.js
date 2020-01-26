@@ -1,4 +1,5 @@
 var express= require("express"), app = express(), http=require("http").Server(app).listen(3000);
+var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
 app.use("/css", express.static("./css"))
 app.use("/img",express.static("./img"))
@@ -9,6 +10,9 @@ app.get("/", function(req,res){
 })
 app.get("/home", function(req,res){
 	res.sendFile(__dirname+"/home.html");
+})
+app.get("/prediction.json", function(req,res){
+    res.send({data:data});
 })
 app.get("/page1", function(req,res){
 	res.sendFile(__dirname+"/page1.html");
@@ -82,18 +86,23 @@ app.get('/data.json', function(req, res){
 
 //setInterval(queryData, 5000);
 
-function getApiData(){
-    var http = new XMLHttpRequest();
-    var url="";
-    http.open('GET', url);
-    http.onreadystatechange - function(){
-        if (http.readyState==4 && http.status == 200){
-            data=http.responseText;
-            console.log(data);
-        }
-    }
-    http.send();
-}
+// function getApiData(){
 
+//     var http = new XMLHttpRequest();
+//     var url="https://samm82.pythonanywhere.com/api";
+//     http.open('GET', url);
+//     http.responseType= 'text';
+//     // http.onload = function() {
+//     //   data = http.response;
+//     //   console.log(data);
+//     // };
+//     http.onreadystatechange = function(){
+//         if (http.readyState==4 && http.status == 200){
+//             data=http.responseText;
+//             console.log(data);
 
-getApiData();
+//         }
+//     }
+//     http.send();
+// }
+
