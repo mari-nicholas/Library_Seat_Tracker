@@ -1,6 +1,7 @@
 import getpass
 import pymongo
 import datetime
+import pickle
 
 from random import randrange, randint
 from pandas import read_csv, DataFrame
@@ -108,10 +109,9 @@ for i in range(len(data)):
     else:
         dow += 1
 
-print(len(dataset))
-for i in dataset:
-    print(i)
-
+with open('dataset.txt', 'w') as f: 
+    for i in dataset:
+        f.write(" ".join(map(str, [i["day"], i["dayOfWeek"], i["hour"], i["available"]])) + "\n")
 
 dataTrain = DataFrame(dataset)
 
@@ -122,13 +122,34 @@ y = array[:,3]
 # print(y)
 X_train, X_validation, Y_train, Y_validation = train_test_split(X, y, test_size=0.20, random_state=69)
 
-print("Split and ready to train\n")
+# print("Split and ready to train\n")
 
 predictor = LinearRegression(n_jobs=-1)
 predictor.fit(X=X, y=y)
 
-X_TEST = [[29, 3, 8]]
-outcome = predictor.predict(X=X_TEST)
-coefficients = predictor.coef_
+filename = 'finalized_model.sav'
+pickle.dump(predictor, open(filename, 'wb'))
 
-print('Outcome : {}\nCoefficients : {}'.format(outcome, coefficients))
+inputDate = 31
+inputTime = 14
+
+dow = (inputDate + 3) % 7
+
+if dow == 0:
+    assert(12 <= inputTime <= 22)
+elif dow == 5:
+    assert(8 <= inputTime <= 17)
+elif dow == 6:
+    assert(10 <= inputTime <= 17)
+else:
+    assert(8 <= inputTime <= 22)
+
+X_TEST = [[inputDate, dow, inputTime]]
+
+for i in dataset:
+    if i["dayOfWeek"] == dow and abs(i["hour"] - inputTime) < 2:
+        print(i)
+
+outcome = predictor.predict(X=X_TEST)
+
+print('\nOutcome: {0:5.2f}'.format(float(outcome[0])))
