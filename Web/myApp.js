@@ -43,7 +43,7 @@ function queryData() {
 	    //console.log(result);
 	    //console.log(JSON.stringify(result));
 	    fs.writeFileSync('./data/data.json', JSON.stringify(result));
-
+	    console.log("Loop");
 	    db.close();
 	  });
 	});
@@ -51,5 +51,4 @@ function queryData() {
 
 }
 
-
-setInterval(queryData, 30000);
+setInterval(queryData, 15000);

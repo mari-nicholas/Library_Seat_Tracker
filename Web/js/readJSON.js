@@ -9,12 +9,14 @@ function readJson() {
 	          var file = new File([this.response], 'temp');
 	          var fileReader = new FileReader();
 	          fileReader.addEventListener('load', function(){
-	          	console.log(fileReader.result);
+	          	//console.log(fileReader.result);
 				var obj = JSON.parse(fileReader.result);
 				if(obj[0]["lastState"] === 1){
 					document.getElementsByClassName("occupied")[0].style.fill="green";	
+					console.log("green");
 				} else {
 					document.getElementsByClassName("occupied")[0].style.fill="red";
+					console.log("red");
 				}	
 		        });
 	          fileReader.readAsText(file);
@@ -24,4 +26,4 @@ function readJson() {
 	})();
 }
 
-setInterval(readJson, 30000);
+setInterval(readJson, 15000);
