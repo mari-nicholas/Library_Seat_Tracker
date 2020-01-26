@@ -6,6 +6,7 @@ body {
 	margin:0; 
 	padding-bottom:0 !important; 
 	height:100vh;
+	
 }
 
 .occupied {
@@ -133,6 +134,12 @@ li a:hover {
     background-color: black;
 }
 
-
-
+#pg1 {
+	background-image: url("../img/thode1.png");
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: 55% 95%;
+	background-position: center;
+	background-origin: content-box;
+}
   
