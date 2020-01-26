@@ -1,6 +1,6 @@
 function readJson() {
 	(async () => {
-		var path = '../data/data.json'
+		var path = 'isthodeopen.tech/data/data.json'
 		var xhr = new XMLHttpRequest();
 	    xhr.open('GET', path, true);
 	    xhr.responseType = 'blob';
