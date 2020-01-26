@@ -9,7 +9,7 @@ app.get("/", function(req,res){
 
     const { spawn } = require("child_process");
 
-    var pyProcess = spawn("python", "../ML/simpleMachineLearning.py");
+    var pyProcess = spawn("python", ["../ML/simpleMachineLearning.py"]);
 
     pyProcess.stdout.setEncoding("utf8");
     pyProcess.stdout.on("data", data => {
@@ -26,7 +26,7 @@ app.get("/home", function(req,res){
 
     const { spawn } = require("child_process");
 
-    var pyProcess = spawn("python", "../ML/simpleMachineLearning.py");
+    var pyProcess = spawn("python", ["../ML/simpleMachineLearning.py"]);
 
     pyProcess.stdout.setEncoding("utf8");
     pyProcess.stdout.on("data", data => {
