@@ -5,9 +5,11 @@ app.use("/img",express.static("./img"))
 app.use("/js", express.static("./js"))
 app.use("/data", express.static("./data"))
 app.get("/", function(req,res){
+    let r =  await runPy()
 	res.sendFile(__dirname+"/home.html");
 })
 app.get("/home", function(req,res){
+    let r =  await runPy()
 	res.sendFile(__dirname+"/home.html");
 })
 app.get("/page1", function(req,res){
@@ -47,9 +49,30 @@ function queryData() {
 	    db.close();
 	  });
 	});
-
-
 }
+
+let {PythonShell} = require('python-shell')
+
+function runPy(){
+    return new Promise(async function(resolve, reject){
+          let options = {
+          mode: 'text',
+          pythonOptions: ['-u'],
+          scriptPath: '../ML/simpleMachineLearning.py',//Path to your script
+          args: []//Approach to send JSON as when I tried 'json' in mode I was getting error.
+         };
+
+          await PythonShell.run('../ML/simpleMachineLearning.py', options, function (err, results) {
+          //On 'results' we get list of strings of all print done in your py scripts sequentially. 
+          if (err) throw err;
+          console.log('results: ');
+          for(let i of results){
+                console.log(i, "---->", typeof i)
+          }
+      resolve(results[1])//I returned only JSON(Stringified) out of all string I got from py script
+     });
+   })
+ } 
 
 
 setInterval(queryData, 30000);
