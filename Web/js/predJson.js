@@ -10,9 +10,9 @@ function predJson() {
     http.onreadystatechange = function(){
         if (http.readyState==4 && http.status == 200){
             data=http.responseText;
-            console.log(data);
+            //console.log(data);
             var yes = document.getElementById("prediction");
-            console.log(yes)
+            //console.log(yes)
             yes.innerHTML = data;
 
         }

@@ -27,7 +27,7 @@ app.get('/data.json', function(req, res){
 	
 	//response.contentType('application/json');
 
-	console.log("HEYO")
+	//console.log("HEYO")
 	const MongoClient = require('mongodb').MongoClient;
 	var url = "mongodb+srv://user:user@library-seat-tracker-fvhnk.azure.mongodb.net/test?retryWrites=true&w=majority";
 	const fs = require('fs');

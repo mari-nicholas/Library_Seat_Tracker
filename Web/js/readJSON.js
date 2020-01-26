@@ -15,10 +15,10 @@ function readJson() {
 				for (var i = 0; i < temp.length; i++) {
 					if(obj[i]["lastState"] === 1){
 						temp[i].style.fill="green";	
-						console.log(i, "green");
+						//console.log(i, "green");
 					} else if(obj[i]["lastState"] === 0) {
 						temp[i].style.fill="red";
-						console.log(i, "red");
+						//console.log(i, "red");
 					}
 					else{
 
