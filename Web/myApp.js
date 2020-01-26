@@ -51,28 +51,21 @@ function queryData() {
 	});
 }
 
-let {PythonShell} = require('python-shell')
+function runPy() {
+    const spawn = require('child_process').spawn;
+    const ls = spawn('python', ['../ML/simpleMachineLearning.py']);
 
-function runPy(){
-    return new Promise(async function(resolve, reject){
-          let options = {
-          mode: 'text',
-          pythonOptions: ['-u'],
-          scriptPath: '../ML/simpleMachineLearning.py',//Path to your script
-          args: []//Approach to send JSON as when I tried 'json' in mode I was getting error.
-         };
+    ls.stdout.on('data', (data) => {
+      console.log(`stdout: ${data}`);
+    });
 
-          await PythonShell.run('../ML/simpleMachineLearning.py', options, function (err, results) {
-          //On 'results' we get list of strings of all print done in your py scripts sequentially. 
-          if (err) throw err;
-          console.log('results: ');
-          for(let i of results){
-                console.log(i, "---->", typeof i)
-          }
-      resolve(results[1])//I returned only JSON(Stringified) out of all string I got from py script
-     });
-   })
- } 
+    ls.stderr.on('data', (data) => {
+      console.log(`stderr: ${data}`);
+    });
 
+    ls.on('close', (code) => {
+      console.log(`child process exited with code ${code}`);
+    });
+}
 
 setInterval(queryData, 30000);
