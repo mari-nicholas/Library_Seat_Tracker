@@ -52,6 +52,7 @@ h1 {
 	margin: 0px;
 }
 
+
 h2 {
 	font-size: 20px;
 	color: white;
@@ -61,7 +62,7 @@ h2 {
 h3 {
 	color: black;
 	font-size: 30px;
-	text-align: left;
+	text-align: center;
 	padding-left:0px;
 }
 

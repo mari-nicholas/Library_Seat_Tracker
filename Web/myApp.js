@@ -31,14 +31,16 @@ function queryData() {
 	MongoClient.connect(url, function(err, db) {
 	  if (err) throw err;
 	  var mydb = db.db("seatsAvailable");
-	  var query = { 
+	  var query = [{ 
 				  $group:
 					{
 						_id: "$seatNo",
 						lastState: { $last: "$available" }
 					}
-				};
-	  mydb.collection("seats").aggregate([query]).toArray(function(err, result) {
+				},
+				{ $sort : { _id : 1} }
+				];
+	  mydb.collection("seats").aggregate(query).toArray(function(err, result) {
 	    if (err) throw err;
 	    //console.log(result);
 	    //console.log(JSON.stringify(result));
