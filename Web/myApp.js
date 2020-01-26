@@ -1,5 +1,5 @@
 var express= require("express"), app = express(), http=require("http").Server(app).listen(3000);
-var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+//var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
 app.use("/css", express.static("./css"))
 app.use("/img",express.static("./img"))
