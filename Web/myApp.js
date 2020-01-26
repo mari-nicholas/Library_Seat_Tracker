@@ -1,4 +1,4 @@
-var express= require("express"), app = express(), http=require("http").Server(app).listen(80);
+var express= require("express"), app = express(), http=require("http").Server(app).listen(3000);
 
 app.use("/css", express.static("./css"))
 app.use("/img",express.static("./img"))
