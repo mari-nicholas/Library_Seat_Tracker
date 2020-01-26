@@ -13,6 +13,33 @@ body {
 	height:100vh;
 }
 
+#basement {
+	padding-top: 25px;
+	display: block;
+  	margin-left: auto;
+  	margin-right: auto;
+	width: 45%;
+	height: 45%;
+}
+
+#floor1 {
+	padding-top: 25px;
+	display: block;
+  	margin-left: auto;
+  	margin-right: auto;
+	width: 45%;
+	height: 45%;
+}
+
+#floor2 {
+	padding-top: 25px;
+	display: block;
+  	margin-left: auto;
+  	margin-right: auto;
+	width: 45%;
+	height: 45%;
+}
+
 h1, h2, h3, h4, h5, h6 {
 	font-family: 'Lucida Grande', 'Calibri', Helvetica, Arial, sans-serif;
 }
