@@ -88,6 +88,11 @@ h6 {
 	font-size: 16px;
 }
 
+.logo {
+	width: 20%;
+	height: 20%;
+}
+
 #box-container-clear {  /* clear container for body content  */
 	position: float;
 	width: 65%;
